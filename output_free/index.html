@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRSR Faithfulness Audit Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>BRSR Faithfulness Audit 🌿</h1>
+            <p>Infosys Principle 6 (Environment) Compliance Check via Gemini AI</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="summary-section" class="summary-grid">
+            <div class="card summary-card" id="avg-score-card">
+                <h3>Average Faithfulness Score</h3>
+                <p id="avg-score" class="big-number">--</p>
+                <small>(0 = Best, 3 = Worst)</small>
+            </div>
+            <div class="card summary-card">
+                <h3>Total Requirements</h3>
+                <p id="total-principles" class="big-number">--</p>
+            </div>
+            <div class="card summary-card good">
+                <h3>Exact Match (0)</h3>
+                <p id="exact-match" class="big-number">--</p>
+            </div>
+            <div class="card summary-card bad">
+                <h3>Moderate/Vague Gap (2/3)</h3>
+                <p id="major-gaps" class="big-number">--</p>
+            </div>
+        </section>
+
+        <section id="visualization-section">
+            <h2>📊 Compliance Flow & Distribution</h2>
+            <div class="viz-wrapper">
+                <iframe src="sankey_diagram.html" width="100%" height="600px" frameborder="0"></iframe>
+                <iframe src="dashboard.html" width="100%" height="800px" frameborder="0"></iframe>
+            </div>
+        </section>
+
+        <section id="detail-section">
+            <h2>🔎 Detailed Principle Analysis</h2>
+            <div class="table-container">
+                <table id="analysis-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Requirement Title</th>
+                            <th>SEBI Requirement</th>
+                            <th>Drift Category</th>
+                            <th>Score</th>
+                            <th>Justification & Citation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BRSR Faithfulness Analyzer - Powered by Gemini AI</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

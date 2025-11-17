@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRSR Faithfulness Audit Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brsr-green': '#10b981',
+                        'brsr-blue': '#3b82f6',
+                        'score-0': '#d1fae5', // Light Green (Exact)
+                        'score-1': '#fef3c7', // Light Yellow (Minor)
+                        'score-2': '#ffe4e6', // Light Red/Pink (Moderate)
+                        'score-3': '#fecaca', // Red (Vague)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles to mimic the previous look and ensure table readability */
+        iframe {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            width: 100%;
+            min-height: 600px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        .score-cell {
+            font-weight: 600;
+        }
+        
+        /* Specific coloring for score cells */
+        .score-0 { background-color: theme('colors.score-0'); color: #065f46; }
+        .score-1 { background-color: theme('colors.score-1'); color: #92400e; }
+        .score-2 { background-color: theme('colors.score-2'); color: #991b1b; }
+        .score-3 { background-color: theme('colors.score-3'); color: #b91c1c; }
+
+        /* Style for the main container to prevent excessive width on huge screens */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Ensure smooth transitions */
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="bg-brsr-blue text-white shadow-lg py-10">
+        <div class="main-container px-4">
+            <h1 class="text-4xl font-extrabold mb-1">BRSR Faithfulness Audit 🌿</h1>
+            <p class="text-blue-200">Infosys Principle 6 (Environment) Compliance Check via Gemini AI</p>
+        </div>
+    </header>
+
+    <main class="main-container p-4">
+
+        <!-- OVERALL SUMMARY CARDS -->
+        <section id="summary-section" class="grid grid-cols-1 md:grid-cols-4 gap-6 my-8">
+            
+            <div id="avg-score-card" class="card bg-white p-6 rounded-xl shadow-md border-t-4 border-brsr-blue">
+                <h3 class="text-lg font-semibold text-gray-600">Average Faithfulness Score</h3>
+                <p id="avg-score" class="text-5xl font-bold mt-2 text-red-500">--</p>
+                <small class="text-gray-500">(0 = Best, 3 = Worst)</small>
+            </div>
+            
+            <div class="card bg-white p-6 rounded-xl shadow-md border-t-4 border-brsr-blue">
+                <h3 class="text-lg font-semibold text-gray-600">Total Requirements</h3>
+                <p id="total-principles" class="text-5xl font-bold mt-2 text-gray-800">--</p>
+            </div>
+            
+            <div class="card bg-white p-6 rounded-xl shadow-md border-t-4 border-brsr-green">
+                <h3 class="text-lg font-semibold text-gray-600">Exact Match (0)</h3>
+                <p id="exact-match" class="text-5xl font-bold mt-2 text-brsr-green">--</p>
+            </div>
+            
+            <div class="card bg-white p-6 rounded-xl shadow-md border-t-4 border-red-500">
+                <h3 class="text-lg font-semibold text-gray-600">Moderate/Vague Gap (2/3)</h3>
+                <p id="major-gaps" class="text-5xl font-bold mt-2 text-red-500">--</p>
+            </div>
+        </section>
+
+        <!-- VISUALIZATION SECTION -->
+        <section id="visualization-section" class="my-10">
+            <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-brsr-green pb-3 mb-6">📊 Compliance Flow & Distribution</h2>
+            <div class="bg-white p-4 rounded-xl shadow-md">
+                <!-- NOTE: You must generate and save 'sankey_diagram.html' and 'dashboard.html' in the same folder -->
+                <iframe src="sankey_diagram.html" title="BRSR Sankey Diagram" height="600px" frameborder="0"></iframe>
+                <iframe src="dashboard.html" title="BRSR Dashboard Charts" height="800px" frameborder="0"></iframe>
+            </div>
+        </section>
+
+        <!-- DETAILED ANALYSIS TABLE -->
+        <section id="detail-section" class="my-10">
+            <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-brsr-green pb-3 mb-6">🔎 Detailed Principle Analysis</h2>
+            <div class="table-container bg-white rounded-xl shadow-md overflow-hidden">
+                <table id="analysis-table" class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-brsr-blue text-white sticky top-0">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Requirement Title</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">SEBI Requirement</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Drift Category</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Score</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Justification & Citation</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-gray-700">
+                        <!-- Data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-center py-6 mt-10">
+        <p class="text-gray-400 text-sm">&copy; 2025 BRSR Faithfulness Analyzer - Powered by Gemini AI</p>
+    </footer>
+
+    <script>
+        // Data is embedded directly here to bypass CORS issues when loading locally (file:// protocol)
+        const analysisData = {
+            "results": [
+                {
+                    "requirement": {
+                        "id": "P6.1",
+                        "title": "Energy Consumption & Conservation",
+                        "requirement": "Total energy consumption from renewable and non-renewable sources in Joules or multiples, energy intensity per rupee of turnover",
+                        "citation": "SEBI BRSR Framework 2021, Essential Indicator 1"
+                    },
+                    "analysis": {
+                        "company_disclosure": "Analysis failed",
+                        "company_citation": "Unknown",
+                        "faithfulness_score": 2,
+                        "drift_category": "Moderate Gap",
+                        "justification": "Unable to parse: Unterminated string starting at: line 2 column 25 (char 26)"
+                    }
+                },
+                {
+                    "requirement": {
+                        "id": "P6.2",
+                        "title": "Water Withdrawal & Consumption",
+                        "requirement": "Water withdrawal by source in kiloliters, total volume of water consumption, water intensity per rupee of turnover",
+                        "citation": "SEBI BRSR Framework 2021, Essential Indicator 2"
+                    },
+                    "analysis": {
+                        "company_disclosure": "Not disclosed",
+                        "company_citation": "N/A",
+                        "faithfulness_score": 3,
+                        "drift_category": "Vague/Performative",
+                        "justification": "The provided company text does not disclose any quantitative data regarding water withdrawal by source, total water consumption, or water intensity per rupee of turnover. While it mentions an 'HSE Policy' and environmental certifications under Principle 6, these do not fulfill the specific metric requirements of P6.2."
+                    }
+                },
+                {
+                    "requirement": {
+                        "id": "P6.3",
+                        "title": "Waste Management",
+                        "requirement": "Total waste generated in metric tonnes (plastic, e-waste, hazardous, non-hazardous), waste diverted from disposal",
+                        "citation": "SEBI BRSR Framework 2021, Essential Indicator 3"
+                    },
+                    "analysis": {
+                        "company_disclosure": "Not disclosed",
+                        "company_citation": "Not found in provided text",
+                        "faithfulness_score": 3,
+                        "drift_category": "Vague/Performative",
+                        "justification": "The provided company text discusses environmental policies (HSE Policy, ISO 14001) and commitments (carbon neutrality, ESG vision 2030) under Principle 6. However, it does not disclose the specific quantitative data required by SEBI P6.3, such as total waste generated in metric tonnes (plastic, e-waste, hazardous, non-hazardous) or waste diverted from disposal."
+                    }
+                },
+                {
+                    "requirement": {
+                        "id": "P6.4",
+                        "title": "Greenhouse Gas Emissions",
+                        "requirement": "Total Scope 1, Scope 2, and Scope 3 emissions in metric tonnes of CO2 equivalent, GHG emission intensity",
+                        "citation": "SEBI BRSR Framework 2021, Essential Indicator 4"
+                    },
+                    "analysis": {
+                        "company_disclosure": "Not disclosed",
+                        "company_citation": "Page 169, under '5. Specific commitments, goals and targets set by the entity with defined timelines, if any.' and '6. Performance of the entity against the specific commitments, goals and targets along with reasons in case the same are not met.'",
+                        "faithfulness_score": 3,
+                        "drift_category": "Vague/Performative",
+                        "justification": "The company text discusses climate change risks, carbon neutrality goals, and refers to an ESG vision and other report sections for performance details. However, it does not explicitly disclose the total Scope 1, Scope 2, and Scope 3 emissions in metric tonnes of CO2 equivalent or GHG emission intensity as required by SEBI."
+                    }
+                },
+                {
+                    "requirement": {
+                        "id": "P6.5",
+                        "title": "Biodiversity Impact",
+                        "requirement": "Details of operations in biodiversity hotspots, impact assessment, mitigation measures",
+                        "citation": "SEBI BRSR Framework 2021, Essential Indicator 5"
+                    },
+                    "analysis": {
+                        "company_disclosure": "Analysis failed",
+                        "company_citation": "Unknown",
+                        "faithfulness_score": 2,
+                        "drift_category": "Moderate Gap",
+                        "justification": "Unable to parse: Expecting value: line 1 column 1 (char 0)"
+                    }
+                }
+            ],
+            "summary": {
+                "total_principles": 5,
+                "exact_match": 0,
+                "minor_deviation": 0,
+                "moderate_gap": 2,
+                "vague": 3,
+                "average_score": 2.6
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Since data is embedded, we just call the functions directly
+            populateSummary(analysisData.summary);
+            populateTable(analysisData.results);
+        });
+
+        /**
+         * Populates the overall summary cards.
+         * @param {object} summary 
+         */
+        function populateSummary(summary) {
+            document.getElementById('total-principles').textContent = summary.total_principles;
+            document.getElementById('exact-match').textContent = summary.exact_match;
+            // Calculate major gaps (Score 2 + 3)
+            document.getElementById('major-gaps').textContent = summary.moderate_gap + summary.vague;
+            
+            const avgScoreEl = document.getElementById('avg-score');
+            const avgScoreCard = document.getElementById('avg-score-card');
+
+            avgScoreEl.textContent = summary.average_score.toFixed(2);
+            
+            // Set dynamic color based on score (Lower is better)
+            let scoreColor;
+            if (summary.average_score <= 1) {
+                scoreColor = 'text-brsr-green'; // Good
+                avgScoreCard.classList.replace('border-brsr-blue', 'border-brsr-green');
+            } else if (summary.average_score <= 2) {
+                scoreColor = 'text-yellow-600'; // Warning
+                avgScoreCard.classList.replace('border-brsr-blue', 'border-yellow-600');
+            } else {
+                scoreColor = 'text-red-500'; // Poor
+                avgScoreCard.classList.replace('border-brsr-blue', 'border-red-500');
+            }
+            avgScoreEl.classList.remove('text-red-500'); // Remove default before adding new
+            avgScoreEl.classList.add(scoreColor);
+        }
+
+        /**
+         * Populates the detailed analysis table.
+         * @param {array} results 
+         */
+        function populateTable(results) {
+            const tbody = document.getElementById('analysis-table').querySelector('tbody');
+            tbody.innerHTML = ''; // Clear existing content
+
+            results.forEach(item => {
+                const row = document.createElement('tr');
+                const analysis = item.analysis;
+                const requirement = item.requirement;
+                const scoreClass = `score-cell score-${analysis.faithfulness_score}`;
+
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">${requirement.id}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold">${requirement.title}</td>
+                    <td class="px-6 py-4 text-sm max-w-xs">${requirement.requirement}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm ${scoreClass}">${analysis.drift_category}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm ${scoreClass}">${analysis.faithfulness_score}</td>
+                    <td class="px-6 py-4 text-sm max-w-md">
+                        <p class="mb-1"><strong>Justification:</strong> ${analysis.justification}</p>
+                        <p class="text-xs text-gray-500">
+                            <strong>Company:</strong> ${analysis.company_disclosure.substring(0, 100)}${analysis.company_disclosure.length > 100 ? '...' : ''}
+                            <br/>(Source: ${analysis.company_citation})
+                        </p>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>

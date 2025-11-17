@@ -1,0 +1,142 @@
+/* Base Styles */
+:root {
+    --color-primary: #10b981; /* Green - Success */
+    --color-secondary: #3b82f6; /* Blue - Requirement */
+    --color-danger: #ef4444; /* Red - Vague/Gap */
+    --color-warning: #f59e0b; /* Yellow - Minor Deviation */
+    --color-moderate: #f97316; /* Orange - Moderate Gap */
+    --color-background: #f4f6f9;
+    --color-surface: #ffffff;
+    --color-text: #1f2937;
+    --font-stack: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Header */
+header {
+    background-color: var(--color-secondary);
+    color: var(--color-surface);
+    padding: 40px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0 0 5px;
+    font-weight: 700;
+}
+
+header p {
+    opacity: 0.8;
+}
+
+/* Cards & Summary */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: var(--color-surface);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.big-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 5px 0 10px;
+    color: var(--color-text);
+}
+
+#avg-score-card .big-number {
+    color: var(--color-danger); /* Default to high score (bad) */
+}
+
+.summary-card.good .big-number { color: var(--color-primary); }
+.summary-card.bad .big-number { color: var(--color-danger); }
+
+/* Visualization */
+#visualization-section {
+    margin-bottom: 40px;
+}
+
+.viz-wrapper iframe {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Detailed Table */
+#detail-section h2 {
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+}
+
+#analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+#analysis-table th, #analysis-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#analysis-table thead th {
+    background-color: var(--color-secondary);
+    color: var(--color-surface);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+/* Score/Drift Category Colors */
+.score-0 { background-color: #d1fae5; color: #065f46; font-weight: 600; } /* Exact Match */
+.score-1 { background-color: #fef3c7; color: #92400e; font-weight: 600; } /* Minor Deviation */
+.score-2 { background-color: #ffe4e6; color: #991b1b; font-weight: 600; } /* Moderate Gap */
+.score-3 { background-color: #fecaca; color: #b91c1c; font-weight: 600; } /* Vague/Performative */
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    font-size: 0.8em;
+}
