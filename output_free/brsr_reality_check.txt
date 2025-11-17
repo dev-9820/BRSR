@@ -1,0 +1,83 @@
+
+======================================================================
+BRSR REALITY CHECK SUMMARY (FREE LLM ANALYSIS)
+======================================================================
+
+Overall Assessment:
+- Total Principles: 5
+- Average Score: 2.60/3.0
+
+Distribution:
+- Exact Match (0): 0
+- Minor Deviation (1): 0
+- Moderate Gap (2): 2
+- Vague (3): 3
+
+DETAILED FINDINGS
+======================================================================
+
+
+P6.1: Energy Consumption & Conservation
+----------------------------------------------------------------------
+Score: 2 - Moderate Gap
+
+Requirement: Total energy consumption from renewable and non-renewable sources in Joules or multiples, energy intensity per rupee of turnover
+Citation: SEBI BRSR Framework 2021, Essential Indicator 1
+
+Company: Analysis failed
+Source: Unknown
+
+Justification: Unable to parse: Unterminated string starting at: line 2 column 25 (char 26)
+
+
+P6.2: Water Withdrawal & Consumption
+----------------------------------------------------------------------
+Score: 3 - Vague/Performative
+
+Requirement: Water withdrawal by source in kiloliters, total volume of water consumption, water intensity per rupee of turnover
+Citation: SEBI BRSR Framework 2021, Essential Indicator 2
+
+Company: Not disclosed
+Source: N/A
+
+Justification: The provided company text does not disclose any quantitative data regarding water withdrawal by source, total water consumption, or water intensity per rupee of turnover. While it mentions an 'HSE Policy' and environmental certifications under Principle 6, these do not fulfill the specific metric requirements of P6.2.
+
+
+P6.3: Waste Management
+----------------------------------------------------------------------
+Score: 3 - Vague/Performative
+
+Requirement: Total waste generated in metric tonnes (plastic, e-waste, hazardous, non-hazardous), waste diverted from disposal
+Citation: SEBI BRSR Framework 2021, Essential Indicator 3
+
+Company: Not disclosed
+Source: Not found in provided text
+
+Justification: The provided company text discusses environmental policies (HSE Policy, ISO 14001) and commitments (carbon neutrality, ESG vision 2030) under Principle 6. However, it does not disclose the specific quantitative data required by SEBI P6.3, such as total waste generated in metric tonnes (plastic, e-waste, hazardous, non-hazardous) or waste diverted from disposal.
+
+
+P6.4: Greenhouse Gas Emissions
+----------------------------------------------------------------------
+Score: 3 - Vague/Performative
+
+Requirement: Total Scope 1, Scope 2, and Scope 3 emissions in metric tonnes of CO2 equivalent, GHG emission intensity
+Citation: SEBI BRSR Framework 2021, Essential Indicator 4
+
+Company: Not disclosed
+Source: Page 169, under '5. Specific commitments, goals and targets set by the entity with defined timelines, if any.' and '6. Performance of the entity against the specific commitments, goals and targets along with reasons in case the same are not met.'
+
+Justification: The company text discusses climate change risks, carbon neutrality goals, and refers to an ESG vision and other report sections for performance details. However, it does not explicitly disclose the total Scope 1, Scope 2, and Scope 3 emissions in metric tonnes of CO2 equivalent or GHG emission intensity as required by SEBI.
+
+
+P6.5: Biodiversity Impact
+----------------------------------------------------------------------
+Score: 2 - Moderate Gap
+
+Requirement: Details of operations in biodiversity hotspots, impact assessment, mitigation measures
+Citation: SEBI BRSR Framework 2021, Essential Indicator 5
+
+Company: Analysis failed
+Source: Unknown
+
+Justification: Unable to parse: Expecting value: line 1 column 1 (char 0)
+

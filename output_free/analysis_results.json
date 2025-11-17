@@ -1,0 +1,87 @@
+{
+  "results": [
+    {
+      "requirement": {
+        "id": "P6.1",
+        "title": "Energy Consumption & Conservation",
+        "requirement": "Total energy consumption from renewable and non-renewable sources in Joules or multiples, energy intensity per rupee of turnover",
+        "citation": "SEBI BRSR Framework 2021, Essential Indicator 1"
+      },
+      "analysis": {
+        "company_disclosure": "Analysis failed",
+        "company_citation": "Unknown",
+        "faithfulness_score": 2,
+        "drift_category": "Moderate Gap",
+        "justification": "Unable to parse: Unterminated string starting at: line 2 column 25 (char 26)"
+      }
+    },
+    {
+      "requirement": {
+        "id": "P6.2",
+        "title": "Water Withdrawal & Consumption",
+        "requirement": "Water withdrawal by source in kiloliters, total volume of water consumption, water intensity per rupee of turnover",
+        "citation": "SEBI BRSR Framework 2021, Essential Indicator 2"
+      },
+      "analysis": {
+        "company_disclosure": "Not disclosed",
+        "company_citation": "N/A",
+        "faithfulness_score": 3,
+        "drift_category": "Vague/Performative",
+        "justification": "The provided company text does not disclose any quantitative data regarding water withdrawal by source, total water consumption, or water intensity per rupee of turnover. While it mentions an 'HSE Policy' and environmental certifications under Principle 6, these do not fulfill the specific metric requirements of P6.2."
+      }
+    },
+    {
+      "requirement": {
+        "id": "P6.3",
+        "title": "Waste Management",
+        "requirement": "Total waste generated in metric tonnes (plastic, e-waste, hazardous, non-hazardous), waste diverted from disposal",
+        "citation": "SEBI BRSR Framework 2021, Essential Indicator 3"
+      },
+      "analysis": {
+        "company_disclosure": "Not disclosed",
+        "company_citation": "Not found in provided text",
+        "faithfulness_score": 3,
+        "drift_category": "Vague/Performative",
+        "justification": "The provided company text discusses environmental policies (HSE Policy, ISO 14001) and commitments (carbon neutrality, ESG vision 2030) under Principle 6. However, it does not disclose the specific quantitative data required by SEBI P6.3, such as total waste generated in metric tonnes (plastic, e-waste, hazardous, non-hazardous) or waste diverted from disposal."
+      }
+    },
+    {
+      "requirement": {
+        "id": "P6.4",
+        "title": "Greenhouse Gas Emissions",
+        "requirement": "Total Scope 1, Scope 2, and Scope 3 emissions in metric tonnes of CO2 equivalent, GHG emission intensity",
+        "citation": "SEBI BRSR Framework 2021, Essential Indicator 4"
+      },
+      "analysis": {
+        "company_disclosure": "Not disclosed",
+        "company_citation": "Page 169, under '5. Specific commitments, goals and targets set by the entity with defined timelines, if any.' and '6. Performance of the entity against the specific commitments, goals and targets along with reasons in case the same are not met.'",
+        "faithfulness_score": 3,
+        "drift_category": "Vague/Performative",
+        "justification": "The company text discusses climate change risks, carbon neutrality goals, and refers to an ESG vision and other report sections for performance details. However, it does not explicitly disclose the total Scope 1, Scope 2, and Scope 3 emissions in metric tonnes of CO2 equivalent or GHG emission intensity as required by SEBI."
+      }
+    },
+    {
+      "requirement": {
+        "id": "P6.5",
+        "title": "Biodiversity Impact",
+        "requirement": "Details of operations in biodiversity hotspots, impact assessment, mitigation measures",
+        "citation": "SEBI BRSR Framework 2021, Essential Indicator 5"
+      },
+      "analysis": {
+        "company_disclosure": "Analysis failed",
+        "company_citation": "Unknown",
+        "faithfulness_score": 2,
+        "drift_category": "Moderate Gap",
+        "justification": "Unable to parse: Expecting value: line 1 column 1 (char 0)"
+      }
+    }
+  ],
+  "summary": {
+    "total_principles": 5,
+    "exact_match": 0,
+    "minor_deviation": 0,
+    "moderate_gap": 2,
+    "vague": 3,
+    "average_score": 2.6
+  }
+}
