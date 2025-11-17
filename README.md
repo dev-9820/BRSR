@@ -1,4 +1,4 @@
-🌿 BRSR Principle 6 Faithfulness Audit (Infosys)
+# 🌿 BRSR Principle 6 Faithfulness Audit (Infosys)
 This repository provides a fully-automated Python workflow to conduct a faithfulness audit of a company's Business Responsibility and Sustainability Report (BRSR) against the SEBI regulatory requirements, focusing on Principle 6 (Environment).
 
 The core comparison is performed using a Retrieval-Augmented Generation (RAG) approach powered by the Gemini API, ensuring the analysis is grounded in the source documents.
@@ -14,7 +14,7 @@ Visualization & Reporting: Generates clear, actionable deliverables including an
 
 Flexible Embeddings: Supports both proprietary embeddings (--embedder openai) and privacy-focused local embeddings (--embedder local).
 
-##Screenshots of Generation
+## Screenshots of Generation
 ![Alt Text](./sankey_diagram.png)
 ![Alt Text](./dashboard_charts.png)
 ![Alt Text](./dashboard.png)
